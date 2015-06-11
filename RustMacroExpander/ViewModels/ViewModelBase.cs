@@ -9,7 +9,7 @@ using System.Dynamic;
 using System.Runtime.CompilerServices;
 using System.Reflection;
 
-namespace RustMacroExpander.Core
+namespace RustMacroExpander.ViewModels
 {
     abstract public class ViewModelBase : DynamicObject, INotifyPropertyChanged
     {

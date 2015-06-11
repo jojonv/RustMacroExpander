@@ -3,11 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RustMacroExpander.Core
+namespace RustMacroExpander.ViewModels
 {
     [DataContract]
     public class Settings :  ICompilerPreferences, INotifyPropertyChanged
@@ -66,7 +67,7 @@ namespace RustMacroExpander.Core
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void RaisePropertyChanged([CallerMemberInfo] string name = "")
+        protected void RaisePropertyChanged([CallerMemberName] string name = "")
         {
             var e = PropertyChanged;
             if (e == null)

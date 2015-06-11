@@ -8,13 +8,14 @@ using System.IO;
 using System.Linq;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace RustMacroExpander.Core
+namespace RustMacroExpander.ViewModels
 {
     /// <summary>
     /// This class exists to allow serialization and maybe some other stuff down the line
@@ -51,7 +52,7 @@ namespace RustMacroExpander.Core
                 Content = XDocument.Parse(contentStr);
         }
 
-        void RaisePropertyChanged([CallerMemberInfo] string name = "")
+        void RaisePropertyChanged([CallerMemberName] string name = "")
         {
             var e = PropertyChanged;
             if (e == null)

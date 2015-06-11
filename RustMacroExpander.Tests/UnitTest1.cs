@@ -1,9 +1,8 @@
 ﻿using System;
 using RustMacroExpander;
 using Microsoft.CSharp;
-//using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RustMacroExpander.Core;
 using Xunit;
+using RustMacroExpander.ViewModels;
 
 namespace RustMacroExpander.Tests
 {

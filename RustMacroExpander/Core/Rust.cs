@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace RustMacroExpander.Core
+namespace RustMacroExpander.ViewModels
 {
     /// <summary>
     /// Type responsible for compilation only

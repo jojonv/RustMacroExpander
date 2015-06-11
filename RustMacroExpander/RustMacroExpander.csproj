@@ -94,16 +94,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
-    <Compile Include="Core\CallerMemberInfoAttribute.cs" />
     <Compile Include="Core\ICompilerPreferences.cs" />
-    <Compile Include="Core\IFlyoutViewModel.cs" />
+    <Compile Include="ViewModels\IFlyoutViewModel.cs" />
     <Compile Include="Core\RustBridge.cs" />
     <Compile Include="Core\Settings.cs" />
-    <Compile Include="Core\SettingsViewModel.cs" />
-    <Compile Include="Core\ViewModelBase.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Helpers\Cmd.cs" />
     <Compile Include="Core\Rust.cs" />
-    <Compile Include="Helpers\NameAttribute.cs" />
     <Compile Include="Helpers\SettingsException.cs" />
     <Compile Include="Helpers\StateManager.cs" />
     <Compile Include="Helpers\Tags.cs" />

@@ -1,5 +1,5 @@
 ﻿using Caliburn.Micro;
-using RustMacroExpander.Core;
+using RustMacroExpander.ViewModels;
 using RustMacroExpander.Helpers;
 
 

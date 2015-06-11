@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace RustMacroExpander.Core
+namespace RustMacroExpander.ViewModels
 {
     //public class SettingsViewModel : PropertyChangedBase, IFlyoutViewModel
     public class SettingsViewModel : ViewModelBase, IFlyoutViewModel

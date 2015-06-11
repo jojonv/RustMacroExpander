@@ -1,4 +1,4 @@
-﻿using RustMacroExpander.Core;
+﻿using RustMacroExpander.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
