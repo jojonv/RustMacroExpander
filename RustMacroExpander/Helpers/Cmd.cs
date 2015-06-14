@@ -54,30 +54,31 @@ namespace Helpers.RustMacroExpander
                 CreateNoWindow = true,
             };
 
-            var proc = new Process()
+            using (var proc = new Process()
             {
                 StartInfo = cmdInfo,
                 EnableRaisingEvents = true
-            };
+            })
+            {
+                var normalStream = Observable
+                    .FromEventPattern<DataReceivedEventHandler, DataReceivedEventArgs>(
+                          h => proc.OutputDataReceived += h
+                        , h => proc.OutputDataReceived -= h)
+                    .Where(e => e.EventArgs.Data != null);
+                var errorStream = Observable.FromEventPattern<DataReceivedEventHandler, DataReceivedEventArgs>(
+                          h => proc.ErrorDataReceived += h
+                        , h => proc.ErrorDataReceived -=h)
+                    .Where(e => e.EventArgs.Data != null);
 
-            var normalStream = Observable
-                .FromEventPattern<DataReceivedEventHandler, DataReceivedEventArgs>(
-                      h => proc.OutputDataReceived += h
-                    , h => proc.OutputDataReceived -=h)
-                .Where(e => e.EventArgs.Data != null);
-            var errorStream = Observable.FromEventPattern<DataReceivedEventHandler, DataReceivedEventArgs>(
-                      h => proc.ErrorDataReceived += h
-                    , h => proc.ErrorDataReceived -=h)
-                .Where(e => e.EventArgs.Data != null);
+                var mergedStream = Observable.Merge(
+                      normalStream.Select(e => new CmdMessage(e.EventArgs.Data, MessageType.Normal))
+                    , errorStream.Select(e => new CmdMessage(e.EventArgs.Data, MessageType.Error)));
 
-            var mergedStream = Observable.Merge(
-                  normalStream.Select(e => new CmdMessage(e.EventArgs.Data, MessageType.Normal))
-                , errorStream.Select(e => new CmdMessage(e.EventArgs.Data, MessageType.Error)));
-
-            proc.Start();
-            proc.BeginErrorReadLine();
-            proc.BeginOutputReadLine();
-            return mergedStream;
+                proc.Start();
+                proc.BeginErrorReadLine();
+                proc.BeginOutputReadLine();
+                return mergedStream;
+            }
         }
     }
 }
